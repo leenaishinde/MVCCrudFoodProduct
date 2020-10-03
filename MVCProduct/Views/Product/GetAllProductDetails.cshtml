@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVCProduct.Models.ProductModel>
+
+<h2>Product Dashboard</h2>
+<p>
+    <a class="btn btn-success" style="margin-bottom:10px" @Html.ActionLink("Add New Product", "AddProduct") </a>
+</p>
+<table  class="table table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(model => item.Prdid)
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProductDetails", new { id = item.Prdid })|
+                @Html.ActionLink("Details", "Details", new { id = item.Prdid })|
+                @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Prdid }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+    }
+
+</table>
